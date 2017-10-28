@@ -75,6 +75,7 @@ public class Admin_Panel extends Fragment {
         final EditText editKisaAciklama = (EditText)rootView.findViewById(R.id.editKisaAciklama);
         final EditText editTarih = (EditText)rootView.findViewById(R.id.editTarih);
         final EditText editResim = (EditText)rootView.findViewById(R.id.editresimURL);
+        final EditText editUAciklama = (EditText)rootView.findViewById(R.id.editUzunAciklama);
         Button kaydet = (Button)rootView.findViewById(R.id.veri_ekle);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference dbRef = database.getReference("Haberler");
@@ -82,16 +83,18 @@ public class Admin_Panel extends Fragment {
             @Override
             public void onClick(View v) {
                 DatabaseReference idRef = dbRef.push();
-                String t_baslik,t_kisaAciklama,t_Tarih,t_resimURL;
+                String t_baslik,t_kisaAciklama,t_Tarih,t_resimURL,t_uzunAciklama;
                 t_baslik = editBaslik.getText().toString();
                 t_kisaAciklama = editKisaAciklama.getText().toString();
                 t_Tarih = editTarih.getText().toString();
                 t_resimURL = editResim.getText().toString();
-                if(!t_baslik.equals("") && !t_kisaAciklama.equals("") && !t_Tarih.equals("") && !t_resimURL.equals("")){
+                t_uzunAciklama = editUAciklama.getText().toString();
+                if(!t_baslik.equals("") && !t_kisaAciklama.equals("") && !t_Tarih.equals("") && !t_resimURL.equals("") && !t_uzunAciklama.equals("")){
                     idRef.child("Başlık").setValue(t_baslik);
                     idRef.child("Kısa Açıklama").setValue(t_kisaAciklama);
                     idRef.child("Tarih").setValue(t_Tarih);
                     idRef.child("Resim URL").setValue(t_resimURL);
+                    idRef.child("Uzun Aciklama").setValue(t_uzunAciklama);
                     editBaslik.setText("Başlık Giriniz");
                     editKisaAciklama.setText("Kısa Açıklama Giriniz");
                     editTarih.setText("Tarih Giriniz");

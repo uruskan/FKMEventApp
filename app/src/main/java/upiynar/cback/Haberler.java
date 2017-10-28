@@ -4,10 +4,12 @@ import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatDrawableManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,32 +83,41 @@ public class Haberler extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View rootView = inflater.inflate(R.layout.fragment_haberler, container, false);
-        final List<Haber> haberler = new ArrayList<Haber>();
+        final ArrayList<Haber> haberler = new ArrayList<Haber>();
         final ListView listemiz = (ListView)rootView.findViewById(R.id.etkinlik_lview);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference dbRef = database.getReference("Haberler");
         dbRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-            for(DataSnapshot ds : dataSnapshot.getChildren()){
-                String baslik = ds.child("Başlık").getValue().toString();
-                String kisaAciklama = ds.child("Kısa Açıklama").getValue().toString();
-                String tarih = ds.child("Tarih").getValue().toString();
-                String resimURL = ds.child("Resim URL").getValue().toString();
-                haberler.add(new Haber(baslik,kisaAciklama,tarih,resimURL));
-            }
-                OzelAdapter adaptorum = new OzelAdapter(getActivity(),haberler);
-                listemiz.setAdapter(adaptorum);
-                listemiz.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    //Buraya tıklanınca işler yapılacak moruq.
-                    //Ben şimdi şey yapmayı planlıyorum yeni activitye attırıcam buradan.
-                    //Yeni activity nasıl oluşturuyoduk amk dsgfuerhuewhgue
-                        //Sanki hiçbir şey bilmiyorum of bana niye bazen böyle oluyor.
-                    }
-                });
-                dbRef.removeEventListener(this);
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for(DataSnapshot ds : dataSnapshot.getChildren()){
+                            String baslik = ds.child("Başlık").getValue().toString();
+                            String kisaAciklama = ds.child("Kısa Açıklama").getValue().toString();
+                            String tarih = ds.child("Tarih").getValue().toString();
+                            String resimURL = ds.child("Resim URL").getValue().toString();
+                            String uzunAciklama = ds.child("Uzun Aciklama").getValue().toString();
+                            haberler.add(new Haber(baslik,kisaAciklama,tarih,resimURL,uzunAciklama));
+                        }
+                        OzelAdapter adaptorum = new OzelAdapter(getActivity(),haberler);
+                        listemiz.setAdapter(adaptorum);
+                        listemiz.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                //Buraya tıklanınca işler yapılacak moruq.
+                                //Ben şimdi şey yapmayı planlıyorum yeni activitye attırıcam buradan.
+                                //Yeni activity nasıl oluşturuyoduk amk dsgfuerhuewhgue
+                                //Sanki hiçbir şey bilmiyorum of bana niye bazen böyle oluyor.
+                                int hangisi = position;
+                                Log.e("LOGG" , String.valueOf(position));
+                                Intent intent = new Intent(getActivity(), Haber_Main.class);
+                                intent.putExtra("pozisyon",hangisi); //Şuan sadece pozisyonu çekipi,diğer actrivityde herşeyi yeniden yaratıp aynı objeyi çekebilir miyim deneyeceğim.
+                                startActivity(intent);
+                                //intent.put Burada Haber classımı Parcelable yapacağım ve buradan diğer activity'ye göndereceğim.
+                                //Şuan tek sıkıntı Tıkladığım şeyin datasını çekmesini nasıl sağlayacağımı bilmemem gerisi ez e benziyor.
+
+                            }
+                        });
+                        dbRef.removeEventListener(this);
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {

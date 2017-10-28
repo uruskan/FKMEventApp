@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="65dp"
+
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Başlık" />
@@ -20,20 +20,27 @@
         android:id="@+id/editKisaAciklama"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="39dp"
+
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Kısa Açıklama"
         android:layout_below="@+id/editBaslik"
+        android:layout_alignStart="@+id/editBaslik" />
+    <EditText
+        android:id="@+id/editUzunAciklama"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Uzun Açıklama"
+        android:layout_below="@+id/editKisaAciklama"
         android:layout_alignStart="@+id/editBaslik" />
 
     <EditText
         android:id="@+id/editTarih"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/editKisaAciklama"
-        android:layout_below="@+id/editKisaAciklama"
-        android:layout_marginTop="36dp"
+        android:layout_alignStart="@+id/editUzunAciklama"
+        android:layout_below="@+id/editUzunAciklama"
         android:ems="10"
         android:inputType="date"
         android:text="Tarih" />
@@ -53,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/editTarih"
         android:layout_below="@+id/editTarih"
-        android:layout_marginTop="30dp"
+
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Resim URL'si" />
