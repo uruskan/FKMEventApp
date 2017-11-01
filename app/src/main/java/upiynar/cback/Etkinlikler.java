@@ -1,13 +1,22 @@
 package upiynar.cback;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatDrawableManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,8 +76,40 @@ public class Etkinlikler extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_etkinlikler, container, false);
+
+        View etkinlikview = (View) inflater.inflate(R.layout.fragment_etkinlikler, container, false);
+        //Todo : SEXXXXXXX
+        final ArrayList<Etkinlik> etkinlikler = new ArrayList<Etkinlik>();
+        final ListView liste = (ListView)etkinlikview.findViewById(R.id.etkinlik_lview);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference dbRef = database.getReference("Etkinlikler");
+        dbRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds1 : dataSnapshot.getChildren()){
+                    String etkinlik_name = ds1.child("Etkinlik_Name").getValue().toString();
+                    String etkinlik_date = ds1.child("Etkinlik_Date").getValue().toString();
+                    String etkinlik_time = ds1.child("Etkinlik_Time").getValue().toString();
+                    String etkinlik_imgURL = ds1.child("Etkinlik_imgURL").getValue().toString();
+                    etkinlikler.add(new Etkinlik(etkinlik_name,etkinlik_date,etkinlik_time,etkinlik_imgURL));
+                }
+                Etkinlikler_Adapter adaptorum = new Etkinlikler_Adapter(getActivity(),etkinlikler);
+                liste.setAdapter(adaptorum);
+                liste.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        //Todo: Şimdi bundan sonrası şeys bro.Yani biraz şarap olsaydı şimki keşke.
+
+                    }
+                });
+                dbRef.removeEventListener(this);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        return  etkinlikview;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

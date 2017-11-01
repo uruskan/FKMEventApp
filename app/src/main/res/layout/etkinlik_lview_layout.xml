@@ -3,19 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:background="#B2DFDB">
-
+    android:background="#ECEFF1">
     <ImageView
         android:id="@+id/etkinlik_image"
         android:layout_width="128dp"
         android:layout_height="match_parent"
-        android:layout_alignBottom="@id/clock_ico"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/amcalar" />
+        />
 
     <TextView
         android:id="@+id/etkinlik_name"
@@ -24,7 +23,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="30dp"
         android:layout_toEndOf="@+id/etkinlik_image"
-        android:text="Çılgın Sex Partisi"
+        android:text="Çılgın Çay Partisi"
         android:textAlignment="viewStart"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -37,7 +36,7 @@
         android:layout_height="28dp"
         android:layout_alignStart="@+id/etkinlik_name"
         android:layout_below="@+id/etkinlik_name"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="20dp"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/ic_date_range_black_36dp" />
@@ -47,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/date_ico"
         android:layout_below="@id/etkinlik_name"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="20dp"
         android:layout_marginStart="5dp"
         android:text="12.10.2017"
         android:textColor="#000000"
@@ -58,7 +57,7 @@
         android:layout_width="28dp"
         android:layout_height="28dp"
         android:layout_alignStart="@+id/date_ico"
-        android:layout_alignTop="@+id/textView"
+        android:layout_alignTop="@+id/etkinlik_time"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/ic_query_builder_black_36dp" />
@@ -68,9 +67,9 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/date_text"
         android:layout_below="@+id/date_ico"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:text="12:30 - 14:40"
-        android:id="@+id/textView"
+        android:id="@+id/etkinlik_time"
         android:textColor="#000000"/>
 
 </RelativeLayout>

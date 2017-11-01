@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     tools:context="upiynar.cback.Haberler">
     <ListView
-        android:id="@+id/etkinlik_lview"
+        android:id="@+id/haber_lview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1" >

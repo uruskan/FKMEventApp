@@ -84,7 +84,7 @@ public class Haberler extends Fragment {
         // Inflate the layout for this fragment
         final View rootView = inflater.inflate(R.layout.fragment_haberler, container, false);
         final ArrayList<Haber> haberler = new ArrayList<Haber>();
-        final ListView listemiz = (ListView)rootView.findViewById(R.id.etkinlik_lview);
+        final ListView listemiz = (ListView)rootView.findViewById(R.id.haber_lview);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference dbRef = database.getReference("Haberler");
         dbRef.addValueEventListener(new ValueEventListener() {
