@@ -68,7 +68,7 @@ public class Haber_Main extends AppCompatActivity  {
         final ArrayList<Haber> haberler = new ArrayList<Haber>();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference dbRef = database.getReference("Haberler");
-        Picasso.with(Haber_Main.this).load(haberler.get(pozisyon).getResimURL()).into(popresim);
+        //Picasso.with(Haber_Main.this).load(haberler.get(pozisyon).getResimURL()).into(popresim);
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
