@@ -7,6 +7,7 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/Annen"
     tools:context="upiynar.cback.Haber_Main">
     <ImageView
         android:layout_width="match_parent"
@@ -14,12 +15,29 @@
         android:id="@+id/imageView" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
+        android:id="@+id/baslik"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView"
+        android:layout_alignStart="@+id/uzunAciklama"
+        android:layout_below="@id/imageView"
+        android:layout_marginTop="15dp"
+        android:text="TextView"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/uzunAciklama"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/baslik"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mollis ipsum et dictum tempor. Proin consequat lacus in dui dignissim congue. Nullam sed maximus erat, eget blandit magna. Curabitur porta commodo convallis. Aenean vel metus fringilla, facilisis sem et, tristique sem. Suspendisse neque mauris, porttitor non vulputate non, hendrerit ut sapien. Proin pretium lacus vitae erat maximus, a ultricies odio pellentesque. Mauris vel justo nibh. Cras euismod ligula eros, ut pharetra lectus pulvinar vitae. Aenean non sem ut nisl fermentum lobortis. Mauris sed purus varius, viverra orci a, euismod leo. Nam aliquam augue et efficitur ullamcorper. Morbi id lectus ipsum. Etiam id lacus ut leo ornare posuere a sed lectus."
         android:scrollbars = "vertical"
         />
+
+
 
 
 </RelativeLayout>

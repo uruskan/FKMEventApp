@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.github.chrisbanes.photoview.PhotoView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -49,7 +50,7 @@ public class OzelAdapter extends BaseAdapter{
         TextView baslik = (TextView) etkinlikLayout.findViewById(R.id.Baslik);
         TextView kisaAciklama = (TextView) etkinlikLayout.findViewById(R.id.kisaAciklama);
         TextView Tarih = (TextView) etkinlikLayout.findViewById(R.id.Tarih);
-        ImageView simge = (ImageView) etkinlikLayout.findViewById(R.id.simge);
+       ImageView simge = (ImageView) etkinlikLayout.findViewById(R.id.simge);
         Haber haber = mHaberListesi.get(position);
         baslik.setText(haber.getBaslik());
         kisaAciklama.setText(haber.getKisaAciklama());
